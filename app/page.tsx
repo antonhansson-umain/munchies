@@ -1,3 +1,4 @@
+import Filters from "@/components/Filters";
 import Restaurants from "@/components/Restaurants";
 
 export default async function Home() {
@@ -5,7 +6,7 @@ export default async function Home() {
     <>
       <aside className="card">Filters</aside>
       <main className="flex flex-col gap-10">
-        <div>Filters</div>
+        <Filters />
         <Restaurants />
       </main>
     </>

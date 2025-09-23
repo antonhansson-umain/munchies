@@ -1,15 +1,12 @@
-import { BASE_API_URL } from "@/constants/API_URL";
 import H1 from "./Headings/H1";
 import RestaurantCard from "./RestaurantCard";
 import { RestaurantsResponse } from "@/types/RestaurantsResponse";
+import { makeAPIRequest } from "@/lib/makeAPIRequest";
 
 export default async function Restaurants() {
-  const response = await fetch(`${BASE_API_URL}/restaurants`);
-  if (!response || !response.ok) {
-    return <>Error: no restaurants found</>;
-  }
-  const restaurantsResponse: RestaurantsResponse = await response.json();
-  const restaurants = restaurantsResponse.restaurants;
+  const res = await makeAPIRequest<RestaurantsResponse>("/restaurants");
+  if (!res) return <>No restaurants found</>;
+  const restaurants = res.restaurants;
   return (
     <div className="flex flex-col gap-8">
       <H1>Restaurants</H1>
