@@ -1,4 +1,4 @@
-import Filters from "@/components/Filters";
+import Filters from "@/components/FilterCards";
 import Restaurants from "@/components/Restaurants";
 
 export default async function Home() {
