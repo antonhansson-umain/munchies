@@ -5,6 +5,7 @@ import H3 from "./Headings/H3";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/cn";
+import { useState } from "react";
 
 export default function FilterCard({ filter }: { filter: Filter }) {
   const name = filter.name.toLowerCase();
@@ -21,7 +22,6 @@ export default function FilterCard({ filter }: { filter: Filter }) {
   }
 
   const handleClick = () => {
-    const name = filter.name.toLocaleLowerCase();
     let newCategories: string[];
     if (categories.includes(name)) {
       newCategories = categories.filter((c) => c !== name);
@@ -43,7 +43,7 @@ export default function FilterCard({ filter }: { filter: Filter }) {
   return (
     <button
       className={cn(
-        "card w-40 min-w-40 h-20 py-4 px-3 relative flex overflow-hidden cursor-pointer",
+        "card w-40 min-w-40 h-20 py-4 px-3 relative flex overflow-hidden cursor-pointer transition-colors",
         {
           "!bg-primary-green/50": categories.includes(name),
         }
