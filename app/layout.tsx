@@ -1,5 +1,10 @@
+import localFont from "next/font/local";
 import type { Metadata } from "next";
 import "./globals.css";
+
+const SFPro = localFont({
+  src: "../fonts/SF-Pro.ttf",
+});
 
 export const metadata: Metadata = {
   title: "Munchies",
@@ -13,9 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`antialiased !bg-[#FAFAFA]`}
-      >
+      <body className={`${SFPro.className} antialiased !bg-[#FAFAFA]`}>
         {children}
       </body>
     </html>
