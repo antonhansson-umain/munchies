@@ -8,9 +8,9 @@ export default async function Restaurants() {
   if (!res) return <>No restaurants found</>;
   const { restaurants } = res;
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 pr-10">
       <H1>Restaurants</H1>
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4">
+      <div className="grid grid-cols-[repeat(auto-fit,minmax(327px,1fr))] gap-4">
         {restaurants.map((r) => (
           <RestaurantCard key={r.id} restaurant={r} />
         ))}
