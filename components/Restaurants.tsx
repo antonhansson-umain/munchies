@@ -6,7 +6,7 @@ import { makeAPIRequest } from "@/lib/makeAPIRequest";
 export default async function Restaurants() {
   const res = await makeAPIRequest<RestaurantsResponse>("/restaurants");
   if (!res) return <>No restaurants found</>;
-  const restaurants = res.restaurants;
+  const { restaurants } = res;
   return (
     <div className="flex flex-col gap-8">
       <H1>Restaurants</H1>
