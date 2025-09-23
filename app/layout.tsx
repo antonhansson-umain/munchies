@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${SFPro.className} antialiased max-w-screen-xl mx-auto pl-10 grid grid-rows-[auto_1fr] grid-cols-[239px_1fr] min-h-screen gap-x-5`}
+        className={`${SFPro.className} antialiased max-w-screen-xl mx-auto pl-10 grid grid-rows-[auto_1fr] grid-cols-[239px_100%] min-h-screen gap-x-5`}
       >
         <header className="col-span-2 h-36 flex items-center pt-1">
           <Logo />

@@ -1,3 +1,18 @@
-export default function Filters() {
-  return <div>Filters</div>;
+import { makeAPIRequest } from "@/lib/makeAPIRequest";
+import { FiltersResponse } from "@/types/FilterResponse";
+import FilterCard from "./FilterCard";
+
+export default async function Filters() {
+  const res = await makeAPIRequest<FiltersResponse>("/filter");
+  if (!res) return <>No filters found</>;
+  const { filters } = res;
+  return (
+    <div className="flex items-center gap-2.5 ">
+      {filters.map((f) => (
+        <FilterCard key={f.id} filter={f} />
+      ))}
+    </div>
+  );
 }
+
+// overflow-x-scroll
