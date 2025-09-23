@@ -42,4 +42,6 @@ body {
   border: 0.6px solid rgba(0, 0, 0, 0.1);
   background-color: white;
   border-radius: 8px;
+  box-shadow: -4px 2px 10px rgba(0, 0, 0, 0.01),
+    -16px 9px 18px rgba(0, 0, 0, 0.01);
 }
