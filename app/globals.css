@@ -9,7 +9,8 @@
 @theme inline {
   --color-background: var(--off-white);
   --color-foreground: var(--foreground);
-  --border-primary: ;
+  --color-primary-green: var(--primary-green);
+  --color-off-white: var(--off-white);
 }
 
 @media (prefers-color-scheme: dark) {
