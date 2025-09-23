@@ -11,6 +11,7 @@ export default function Logo({ className }: LogoProps) {
       width={273.42}
       height={40}
       className={className}
+      draggable={false}
     />
   );
 }
