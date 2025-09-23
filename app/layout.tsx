@@ -18,9 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${SFPro.className} antialiased !bg-[#FAFAFA]`}>
-        {children}
-      </body>
+      <body className={`${SFPro.className} antialiased`}>{children}</body>
     </html>
   );
 }
