@@ -6,6 +6,10 @@
   --primary-green: #00703a;
 }
 
+/* @theme {
+  --text-base: 12px;
+} */
+
 @theme inline {
   --color-background: var(--off-white);
   --color-foreground: var(--foreground);
@@ -27,6 +31,7 @@ body {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif,
     Helvetica, sans-serif;
   letter-spacing: -0.03125rem;
+  font-size: 12px;
 }
 
 * {
