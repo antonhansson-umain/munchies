@@ -5,16 +5,18 @@ import H2 from "./Headings/H2";
 export default function Filters({
   categories,
 }: {
-  categories: FiltersResponse["filters"];
+  categories?: FiltersResponse["filters"];
 }) {
   const groups = [
     {
       label: "Food Category",
       key: "category",
-      options: categories.map((c) => ({
-        label: c.name,
-        value: c.name.toLowerCase(),
-      })),
+      options: categories
+        ? categories.map((c) => ({
+            label: c.name,
+            value: c.name.toLowerCase(),
+          }))
+        : [],
     },
     {
       label: "Delivery Time",
@@ -64,9 +66,10 @@ export default function Filters({
   return (
     <aside className="card !rounded-[10px] p-6 flex flex-col gap-8">
       <H2>Filter</H2>
-      {groups.map((g) => (
-        <FilterGroup key={g.key} filterGroup={g} />
-      ))}
+      {groups.map(
+        (g) =>
+          g.options.length > 0 && <FilterGroup key={g.key} filterGroup={g} />
+      )}
     </aside>
   );
 }
