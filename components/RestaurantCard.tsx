@@ -4,13 +4,17 @@ import RightArrowIcon from "@/icons/RightArrowIcon";
 import Button from "./Button";
 import Chip from "./Chip";
 import Image from "next/image";
+import Link from "next/link";
 
 type ResturantCardProps = React.HTMLAttributes<HTMLDivElement> & {
   restaurant: Restaurant;
 };
 export default function RestaurantCard({ restaurant }: ResturantCardProps) {
   return (
-    <div className="card p-4 h-50 flex flex-col justify-between relative overflow-hidden">
+    <Link
+      href={`/restaurant/${restaurant.id}`}
+      className="card p-4 h-50 flex flex-col justify-between relative overflow-hidden hover:!bg-background transition-colors"
+    >
       <div className="flex justify-between">
         <div className="flex gap-2 z-10">
           <Chip>(Open Status)</Chip>
@@ -31,6 +35,6 @@ export default function RestaurantCard({ restaurant }: ResturantCardProps) {
           <RightArrowIcon />
         </Button>
       </div>
-    </div>
+    </Link>
   );
 }
