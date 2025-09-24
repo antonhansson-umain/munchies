@@ -4,7 +4,18 @@ import "./globals.css";
 import Logo from "@/components/Logo";
 
 const SFPro = localFont({
-  src: "../fonts/SF-Pro.ttf",
+  src: [
+    {
+      path: "../fonts/SF-Pro.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../fonts/SF-Pro-Text-Semibold.otf",
+      weight: "590",
+      style: "normal",
+    },
+  ],
 });
 
 export const metadata: Metadata = {

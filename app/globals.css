@@ -45,3 +45,7 @@ body {
   box-shadow: -4px 2px 10px rgba(0, 0, 0, 0.01),
     -16px 9px 18px rgba(0, 0, 0, 0.01);
 }
+
+button {
+  cursor: pointer;
+}
