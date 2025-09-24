@@ -74,12 +74,14 @@ export default function Filters({
     },
   ];
   return (
-    <aside className="card !rounded-[10px] p-6 flex flex-col gap-8">
-      <H2>Filter</H2>
-      {groups.map(
-        (g) =>
-          g.filters.length > 0 && <FilterGroup key={g.key} filterGroup={g} />
-      )}
+    <aside className="card !rounded-[10px] p-6 relative">
+      <div className="flex flex-col gap-8 sticky top-4">
+        <H2>Filter</H2>
+        {groups.map(
+          (g) =>
+            g.filters.length > 0 && <FilterGroup key={g.key} filterGroup={g} />
+        )}
+      </div>
     </aside>
   );
 }
