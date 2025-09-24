@@ -1,5 +1,6 @@
 export type Filter = {
-  id: string; // ($uuid)
+  id?: string; // ($uuid)
   name: string;
-  image_url: string; // ($uri)
+  image_url?: string; // ($uri)
+  value?: string;
 };

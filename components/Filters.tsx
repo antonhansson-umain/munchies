@@ -1,41 +1,37 @@
 import { FiltersResponse } from "@/types/FilterResponse";
 import FilterGroup from "./FilterGroup";
 import H2 from "./Headings/H2";
+import { FilterGroup as FilterGroupType } from "@/types/FilterGroup";
 
 export default function Filters({
   categories,
 }: {
   categories?: FiltersResponse["filters"];
 }) {
-  const groups = [
+  const groups: FilterGroupType[] = [
     {
       label: "Food Category",
       key: "category",
-      options: categories
-        ? categories.map((c) => ({
-            label: c.name,
-            value: c.name.toLowerCase(),
-          }))
-        : [],
+      filters: categories ? categories : [],
     },
     {
       label: "Delivery Time",
       key: "time",
-      options: [
+      filters: [
         {
-          label: "0-10 min",
+          name: "0-10 min",
           value: "0-10",
         },
         {
-          label: "10-30 min",
+          name: "10-30 min",
           value: "10-30",
         },
         {
-          label: "30-60 min",
+          name: "30-60 min",
           value: "30-60",
         },
         {
-          label: "1 hour+",
+          name: "1 hour+",
           value: "60",
         },
       ],
@@ -43,21 +39,21 @@ export default function Filters({
     {
       label: "Price Range",
       key: "price",
-      options: [
+      filters: [
         {
-          label: "$",
+          name: "$",
           value: "$",
         },
         {
-          label: "$$",
+          name: "$$",
           value: "$$",
         },
         {
-          label: "$$$",
+          name: "$$$",
           value: "$$$",
         },
         {
-          label: "$$$$",
+          name: "$$$$",
           value: "$$$$",
         },
       ],
@@ -68,7 +64,7 @@ export default function Filters({
       <H2>Filter</H2>
       {groups.map(
         (g) =>
-          g.options.length > 0 && <FilterGroup key={g.key} filterGroup={g} />
+          g.filters.length > 0 && <FilterGroup key={g.key} filterGroup={g} />
       )}
     </aside>
   );

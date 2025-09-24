@@ -1,33 +1,22 @@
+import { FilterGroup as FilterGroupType } from "@/types/FilterGroup";
 import FilterChip from "./FilterChip";
 import FilterGroupTitle from "./FilterGroupTitle";
-
-type FilterGroup = {
-  label: string;
-  key: string;
-  options: FilterOption[];
-};
-
-type FilterOption = {
-  label: string;
-  value: string;
-};
 
 export default function FilterGroup({
   filterGroup,
 }: {
-  filterGroup: FilterGroup;
+  filterGroup: FilterGroupType;
 }) {
   return (
     <div className="flex flex-col gap-4">
       <FilterGroupTitle>{filterGroup.label}</FilterGroupTitle>
       <div className="flex gap-2.5 flex-wrap">
-        {filterGroup.options.map((o) => (
+        {filterGroup.filters.map((o, index) => (
           <FilterChip
-            key={o.value}
-            className={o.label.includes("$") ? "px-2" : ""}
-          >
-            {o.label}
-          </FilterChip>
+            key={o.name + index}
+            filter={o}
+            className={o.name.includes("$") ? "px-2" : ""}
+          />
         ))}
       </div>
     </div>
