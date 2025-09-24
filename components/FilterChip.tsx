@@ -18,7 +18,7 @@ export default function FilterChip({
     <button
       onClick={handleClick}
       className={cn(
-        "px-3 py-2 border-[0.6px] border-black/10 rounded-lg flex gap-2 w-max transition-colors",
+        "px-3 py-2 border-[0.6px] border-black/10 rounded-lg flex gap-2 w-max transition-colors hover:bg-background",
         {
           "!bg-primary-green/50": values.includes(filter.value),
         },

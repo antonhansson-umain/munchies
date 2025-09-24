@@ -12,7 +12,7 @@ export default function FilterCard({ filter }: { filter: UIFilter }) {
   return (
     <button
       className={cn(
-        "card w-40 min-w-40 h-20 py-4 px-3 relative flex overflow-hidden cursor-pointer transition-colors",
+        "card w-40 min-w-40 h-20 py-4 px-3 relative flex overflow-hidden cursor-pointer transition-colors hover:!bg-background",
         {
           "!bg-primary-green/50": values.includes(filter.value),
         }
