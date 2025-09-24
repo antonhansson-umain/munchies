@@ -10,28 +10,28 @@ export default function useFilterClick(filter: UIFilter) {
   const searchParams = useSearchParams();
 
   const params = new URLSearchParams(searchParams);
-  const values = params.get(filter.groupKey);
-  let categories: string[] = [];
-  if (values) {
-    categories = values.split(",");
+  const groups = params.get(filter.groupKey);
+  let values: string[] = [];
+  if (groups) {
+    values = groups.split(",");
   }
 
   const handleClick = () => {
-    let newCategories: string[];
-    if (categories.includes(value)) {
-      newCategories = categories.filter((c) => c !== value);
+    let newValues: string[];
+    if (values.includes(value)) {
+      newValues = values.filter((c) => c !== value);
     } else {
-      categories.push(value);
-      newCategories = categories;
+      values.push(value);
+      newValues = values;
     }
-    if (newCategories.length <= 0) {
+    if (newValues.length <= 0) {
       params.delete(filter.groupKey);
-    } else if (newCategories.length > 1) {
-      params.set(filter.groupKey, newCategories.join(","));
+    } else if (newValues.length > 1) {
+      params.set(filter.groupKey, newValues.join(","));
     } else {
-      params.set(filter.groupKey, newCategories[0]);
+      params.set(filter.groupKey, newValues[0]);
     }
     router.push(`/?${params.toString()}`);
   };
-  return { handleClick, categories };
+  return { handleClick, values };
 }
