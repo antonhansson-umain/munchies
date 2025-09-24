@@ -13,7 +13,7 @@ export default async function FilterCards({
           key={f.id}
           filter={{
             label: f.name,
-            value: f.name.toLowerCase(),
+            value: f.id,
             groupKey: "category",
             image: f.image_url,
           }}

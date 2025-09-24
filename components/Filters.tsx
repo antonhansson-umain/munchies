@@ -15,7 +15,7 @@ export default function Filters({
       filters: categories
         ? categories.map((c) => ({
             label: c.name,
-            value: c.name.toLowerCase(),
+            value: c.id,
             groupKey: "category",
           }))
         : [],

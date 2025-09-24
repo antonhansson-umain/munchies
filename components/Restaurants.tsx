@@ -15,6 +15,7 @@ export default async function Restaurants({
   const res = await makeAPIRequest<RestaurantsResponse>("/restaurants");
   if (!res) return <>No restaurants found</>;
   let restaurants = res.restaurants;
+  console.log(res);
 
   // only fetch price ranges if price range filter is engaged
   if (filters.price !== undefined) {
@@ -30,7 +31,13 @@ export default async function Restaurants({
     );
   }
 
-  const isInCategory = (r: Restaurant) => {};
+  // filtering
+  const isInCategory = (r: Restaurant) => {
+    for (let c of filters.category) {
+      if (r.filter_ids.includes(c)) return true;
+    }
+    return false;
+  };
   const isWithinTime = (r: Restaurant) => {
     const { minTime, maxTime } = getMinAndMaxTimeMinutes(filters.time);
     if (
@@ -47,14 +54,10 @@ export default async function Restaurants({
     }
     return false;
   };
-
-  // filtering
   restaurants = restaurants.filter((r) => {
-    // if (filters.category && false) {
-    //   return null;
-    // } else if
-
-    if (filters.time && !isWithinTime(r)) {
+    if (filters.category && !isInCategory(r)) {
+      return null;
+    } else if (filters.time && !isWithinTime(r)) {
       return null;
     } else if (filters.price && !isWithinPrice(r)) {
       return null;
