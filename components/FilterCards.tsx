@@ -9,7 +9,15 @@ export default async function FilterCards({
   return (
     <div className="flex items-center gap-2.5 overflow-x-scroll max-w-0 min-w-full pr-10">
       {categories.map((f) => (
-        <FilterCard key={f.id} filter={f} />
+        <FilterCard
+          key={f.id}
+          filter={{
+            label: f.name,
+            value: f.name.toLowerCase(),
+            groupKey: "category",
+            image: f.image_url,
+          }}
+        />
       ))}
     </div>
   );

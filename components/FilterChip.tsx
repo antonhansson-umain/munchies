@@ -3,9 +3,10 @@
 import useFilterClick from "@/hooks/useFilterClick";
 import { cn } from "@/lib/cn";
 import { Filter } from "@/types/Filter";
+import { UIFilter } from "@/types/UIFilter";
 
 type FilterChipProps = React.HTMLAttributes<HTMLButtonElement> & {
-  filter: Filter;
+  filter: UIFilter;
 };
 
 export default function FilterChip({
@@ -13,7 +14,7 @@ export default function FilterChip({
   filter,
   ...props
 }: FilterChipProps) {
-  const { handleClick, name, categories } = useFilterClick(filter);
+  const { handleClick } = useFilterClick(filter);
   return (
     <button
       onClick={handleClick}
@@ -23,7 +24,7 @@ export default function FilterChip({
       )}
       {...props}
     >
-      {filter.name}
+      {filter.label}
     </button>
   );
 }

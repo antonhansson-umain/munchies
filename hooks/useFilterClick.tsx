@@ -1,17 +1,16 @@
 "use client";
 
-import { Filter } from "@/types/Filter";
+import { UIFilter } from "@/types/UIFilter";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export default function useFilterClick(filter: Filter) {
-  const name = filter.name.toLowerCase();
+export default function useFilterClick(filter: UIFilter) {
+  const { value } = filter;
 
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const params = new URLSearchParams(searchParams);
-  const categoryKey = "category";
-  const values = params.get(categoryKey);
+  const values = params.get(filter.groupKey);
   let categories: string[] = [];
   if (values) {
     categories = values.split(",");
@@ -19,20 +18,20 @@ export default function useFilterClick(filter: Filter) {
 
   const handleClick = () => {
     let newCategories: string[];
-    if (categories.includes(name)) {
-      newCategories = categories.filter((c) => c !== name);
+    if (categories.includes(value)) {
+      newCategories = categories.filter((c) => c !== value);
     } else {
-      categories.push(name);
+      categories.push(value);
       newCategories = categories;
     }
     if (newCategories.length <= 0) {
-      params.delete(categoryKey);
+      params.delete(filter.groupKey);
     } else if (newCategories.length > 1) {
-      params.set(categoryKey, newCategories.join(","));
+      params.set(filter.groupKey, newCategories.join(","));
     } else {
-      params.set(categoryKey, newCategories[0]);
+      params.set(filter.groupKey, newCategories[0]);
     }
     router.push(`/?${params.toString()}`);
   };
-  return { handleClick, categories, name };
+  return { handleClick, categories };
 }

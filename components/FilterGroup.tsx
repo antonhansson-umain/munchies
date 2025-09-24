@@ -13,9 +13,9 @@ export default function FilterGroup({
       <div className="flex gap-2.5 flex-wrap">
         {filterGroup.filters.map((o, index) => (
           <FilterChip
-            key={o.name + index}
+            key={o.value}
             filter={o}
-            className={o.name.includes("$") ? "px-2" : ""}
+            className={o.label.includes("$") ? "px-2" : ""}
           />
         ))}
       </div>

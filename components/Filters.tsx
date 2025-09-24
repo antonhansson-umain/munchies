@@ -12,27 +12,37 @@ export default function Filters({
     {
       label: "Food Category",
       key: "category",
-      filters: categories ? categories : [],
+      filters: categories
+        ? categories.map((c) => ({
+            label: c.name,
+            value: c.name.toLowerCase(),
+            groupKey: "category",
+          }))
+        : [],
     },
     {
       label: "Delivery Time",
       key: "time",
       filters: [
         {
-          name: "0-10 min",
+          label: "0-10 min",
           value: "0-10",
+          groupKey: "time",
         },
         {
-          name: "10-30 min",
+          label: "10-30 min",
           value: "10-30",
+          groupKey: "time",
         },
         {
-          name: "30-60 min",
+          label: "30-60 min",
           value: "30-60",
+          groupKey: "time",
         },
         {
-          name: "1 hour+",
+          label: "1 hour+",
           value: "60",
+          groupKey: "time",
         },
       ],
     },
@@ -41,20 +51,24 @@ export default function Filters({
       key: "price",
       filters: [
         {
-          name: "$",
+          label: "$",
           value: "$",
+          groupKey: "price",
         },
         {
-          name: "$$",
+          label: "$$",
           value: "$$",
+          groupKey: "price",
         },
         {
-          name: "$$$",
+          label: "$$$",
           value: "$$$",
+          groupKey: "price",
         },
         {
-          name: "$$$$",
+          label: "$$$$",
           value: "$$$$",
+          groupKey: "price",
         },
       ],
     },

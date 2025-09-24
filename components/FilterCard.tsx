@@ -1,30 +1,28 @@
 "use client";
 
-import { Filter } from "@/types/Filter";
 import H3 from "./Headings/H3";
 import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/cn";
-import { useState } from "react";
 import useFilterClick from "@/hooks/useFilterClick";
+import { UIFilter } from "@/types/UIFilter";
 
-export default function FilterCard({ filter }: { filter: Filter }) {
-  const { handleClick, categories, name } = useFilterClick(filter);
+export default function FilterCard({ filter }: { filter: UIFilter }) {
+  const { handleClick, categories } = useFilterClick(filter);
 
   return (
     <button
       className={cn(
         "card w-40 min-w-40 h-20 py-4 px-3 relative flex overflow-hidden cursor-pointer transition-colors",
         {
-          "!bg-primary-green/50": categories.includes(name),
+          "!bg-primary-green/50": categories.includes(filter.value),
         }
       )}
       onClick={handleClick}
     >
-      <H3 className="place-self-start justify-self-start">{filter.name}</H3>
+      <H3 className="place-self-start justify-self-start">{filter.label}</H3>
       <Image
-        src={filter.image_url!}
-        alt={filter.name}
+        src={filter.image!}
+        alt={filter.label}
         width={80}
         height={80}
         className="absolute top-0 -right-2.5"
