@@ -4,6 +4,8 @@ import { RestaurantsResponse } from "@/types/RestaurantsResponse";
 import { makeAPIRequest } from "@/lib/makeAPIRequest";
 import { PriceRange } from "@/types/PriceRange";
 import { FormattedSearchParams } from "@/lib/formatSearchParams";
+import { getMinAndMaxTimeMinutes } from "@/lib/getMinAndMaxTimeMinutes";
+import { Restaurant } from "@/types/Restaurant";
 
 export default async function Restaurants({
   filters,
@@ -28,18 +30,35 @@ export default async function Restaurants({
     );
   }
 
+  const isInCategory = (r: Restaurant) => {};
+  const isWithinTime = (r: Restaurant) => {
+    const { minTime, maxTime } = getMinAndMaxTimeMinutes(filters.time);
+    if (
+      r.delivery_time_minutes >= minTime &&
+      r.delivery_time_minutes <= maxTime
+    ) {
+      return true;
+    }
+    return false;
+  };
+  const isWithinPrice = (r: Restaurant) => {
+    if (r.pricing_range && filters.price.includes(r.pricing_range)) {
+      return true;
+    }
+    return false;
+  };
+
   // filtering
   restaurants = restaurants.filter((r) => {
-    // category
-    // -
+    // if (filters.category && false) {
+    //   return null;
+    // } else if
 
-    // time
-    // -
-
-    // price
-    if (!filters.price || filters.price.length <= 0) {
-      return r;
-    } else if (r.pricing_range && filters.price.includes(r.pricing_range)) {
+    if (filters.time && !isWithinTime(r)) {
+      return null;
+    } else if (filters.price && !isWithinPrice(r)) {
+      return null;
+    } else {
       return r;
     }
   });
@@ -47,10 +66,11 @@ export default async function Restaurants({
   return (
     <div className="flex flex-col gap-8 pr-10">
       <H1>Restaurants</H1>
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(327px,1fr))] gap-4">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(327px,1fr))] gap-4">
         {restaurants.map((r) => (
           <RestaurantCard key={r.id} restaurant={r} />
         ))}
+        {restaurants.length === 0 && <>No restaurants found</>}
       </div>
     </div>
   );

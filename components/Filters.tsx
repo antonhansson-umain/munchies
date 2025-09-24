@@ -41,7 +41,7 @@ export default function Filters({
         },
         {
           label: "1 hour+",
-          value: "60",
+          value: "60-Infinity",
           groupKey: "time",
         },
       ],
