@@ -30,7 +30,7 @@ export default function RestaurantCard({ restaurant }: ResturantCardProps) {
           draggable={false}
         />
       </div>
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <H2>{restaurant.name}</H2>
         <Button className="rounded-full place-self-end">
           <RightArrowIcon />
