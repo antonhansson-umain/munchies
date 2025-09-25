@@ -1,7 +1,6 @@
 import { Restaurant } from "@/types/Restaurant";
 import H2 from "./Headings/H2";
 import RightArrowIcon from "@/icons/RightArrowIcon";
-import Button from "./Button";
 import Chip from "./Chip";
 import Image from "next/image";
 import Link from "next/link";
