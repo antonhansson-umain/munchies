@@ -43,7 +43,9 @@ export default function RestaurantCard({ restaurant }: ResturantCardProps) {
           src={restaurant.image_url}
           width={140}
           height={140}
-          alt={restaurant.image_url}
+          alt={
+            restaurant.image_url.split("/")[2].split(".")[0] ?? restaurant.name
+          }
           className="absolute -right-7.5 -top-7.5"
           draggable={false}
         />

@@ -5,7 +5,6 @@ import Image from "next/image";
 import { cn } from "@/lib/cn";
 import useFilterClick from "@/hooks/useFilterClick";
 import { UIFilter } from "@/types/UIFilter";
-import { useState } from "react";
 
 export default function FilterCard({ filter }: { filter: UIFilter }) {
   const { handleClick, isActive } = useFilterClick(filter);
@@ -23,7 +22,9 @@ export default function FilterCard({ filter }: { filter: UIFilter }) {
       <H3 className="place-self-start justify-self-start">{filter.label}</H3>
       <Image
         src={filter.image!}
-        alt={filter.label}
+        alt={`${
+          filter.image?.split("/")[2].split(".")[0] ?? filter.label
+        } icon`}
         width={80}
         height={80}
         className="absolute top-0 -right-2.5"
