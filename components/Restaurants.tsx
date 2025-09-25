@@ -32,7 +32,7 @@ export default async function Restaurants({
 
   // filtering
   const isInCategory = (r: Restaurant) => {
-    for (let c of filters.category) {
+    for (const c of filters.category) {
       if (r.filter_ids.includes(c)) return true;
     }
     return false;
