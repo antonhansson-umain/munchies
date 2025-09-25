@@ -7,13 +7,13 @@ export default async function FilterCards({
   categories: FiltersResponse["filters"];
 }) {
   return (
-    <div className="flex items-center gap-2.5 overflow-x-scroll max-w-0 min-w-full pr-10">
+    <div className="flex items-center gap-2.5 overflow-x-scroll max-w-0 min-w-full sm:min-w-[calc(100%+12px)] pr-10 max-sm:px-6 pb-6 sm:pb-10 sm:pl-8 sm:-ml-3">
       {categories.map((f) => (
         <FilterCard
           key={f.id}
           filter={{
             label: f.name,
-            value: f.name.toLowerCase(),
+            value: f.id,
             groupKey: "category",
             image: f.image_url,
           }}

@@ -1,4 +1,4 @@
-import { FilterGroupJank } from "@/types/FilterGroup";
+import { isFilterGroupKey } from "@/types/FilterGroup";
 
 export function formatSearchParams(searchParams: {
   [key: string]: string | string[] | undefined;
@@ -6,7 +6,7 @@ export function formatSearchParams(searchParams: {
   const params: Record<string, string[]> = {};
 
   Object.entries(searchParams).forEach(([k, rawV]) => {
-    if (!FilterGroupJank.includes(k)) return;
+    if (!isFilterGroupKey(k)) return;
 
     const v = rawV ?? "";
 

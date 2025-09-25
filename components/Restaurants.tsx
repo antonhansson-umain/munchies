@@ -6,6 +6,7 @@ import { PriceRange } from "@/types/PriceRange";
 import { FormattedSearchParams } from "@/lib/formatSearchParams";
 import { getMinAndMaxTimeMinutes } from "@/lib/getMinAndMaxTimeMinutes";
 import { Restaurant } from "@/types/Restaurant";
+import { OpenStatusResponse } from "@/types/OpenStatusResponse";
 
 export default async function Restaurants({
   filters,
@@ -30,7 +31,37 @@ export default async function Restaurants({
     );
   }
 
-  const isInCategory = (r: Restaurant) => {};
+  // fetch open status of each restaurant
+  restaurants = await Promise.all(
+    restaurants.map(async (r) => {
+      const res = await makeAPIRequest<OpenStatusResponse>(`/open/${r.id}`);
+      if (!res) {
+        console.error("Fetching open status failed for:", r.id);
+        r.is_open = false;
+        return r;
+      }
+      if ("error" in res) {
+        console.error(
+          "Couldn't get restaurant open status for:",
+          r.id,
+          "Because:",
+          res.reason
+        );
+        r.is_open = false;
+        return r;
+      }
+      r.is_open = res.is_open;
+      return r;
+    })
+  );
+
+  // filtering
+  const isInCategory = (r: Restaurant) => {
+    for (const c of filters.category) {
+      if (r.filter_ids.includes(c)) return true;
+    }
+    return false;
+  };
   const isWithinTime = (r: Restaurant) => {
     const { minTime, maxTime } = getMinAndMaxTimeMinutes(filters.time);
     if (
@@ -47,14 +78,10 @@ export default async function Restaurants({
     }
     return false;
   };
-
-  // filtering
   restaurants = restaurants.filter((r) => {
-    // if (filters.category && false) {
-    //   return null;
-    // } else if
-
-    if (filters.time && !isWithinTime(r)) {
+    if (filters.category && !isInCategory(r)) {
+      return null;
+    } else if (filters.time && !isWithinTime(r)) {
       return null;
     } else if (filters.price && !isWithinPrice(r)) {
       return null;
@@ -64,8 +91,8 @@ export default async function Restaurants({
   });
 
   return (
-    <div className="flex flex-col gap-8 pr-10">
-      <H1>Restaurants</H1>
+    <div className="flex flex-col gap-5 sm:gap-8 sm:pr-10 max-sm:px-6 sm:pl-5">
+      <H1 className="max-sm:text-[20px]">Restaurants</H1>
       <div className="grid grid-cols-[repeat(auto-fill,minmax(327px,1fr))] gap-4">
         {restaurants.map((r) => (
           <RestaurantCard key={r.id} restaurant={r} />

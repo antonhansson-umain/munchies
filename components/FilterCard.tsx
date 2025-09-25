@@ -12,11 +12,10 @@ export default function FilterCard({ filter }: { filter: UIFilter }) {
   return (
     <button
       className={cn(
-        "card w-40 min-w-40 h-20 py-4 px-3 relative flex overflow-hidden cursor-pointer transition-colors hover:!bg-background",
+        "card w-40 min-w-40 h-20 py-4 px-3 relative flex overflow-hidden cursor-pointer transition-colors hover:!bg-background hover:!border-primary-green",
         {
-          "!bg-primary-green/50 hover:!bg-primary-green/50": values.includes(
-            filter.value
-          ),
+          "!bg-primary-green text-white hover:!bg-primary-green/80":
+            values.includes(filter.value),
         }
       )}
       onClick={handleClick}
