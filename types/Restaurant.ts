@@ -6,5 +6,6 @@ export type Restaurant = {
   image_url: string; //uri
   delivery_time_minutes: number;
   price_range_id: string;
-  pricing_range?: string;
+  pricing_range?: string; // fetch from /price-range/{price_range_id}
+  is_open?: boolean; // fetch from /open/{id}
 };

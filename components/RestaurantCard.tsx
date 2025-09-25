@@ -18,7 +18,7 @@ export default function RestaurantCard({ restaurant }: ResturantCardProps) {
     >
       <div className="flex justify-between">
         <div className="flex gap-2 z-10">
-          <Chip>(Open Status)</Chip>
+          <Chip>{restaurant.is_open ? "true" : "false"}</Chip>
           <Chip>{restaurant.delivery_time_minutes} min</Chip>
         </div>
         <Image

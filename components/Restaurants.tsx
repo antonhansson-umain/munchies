@@ -6,6 +6,7 @@ import { PriceRange } from "@/types/PriceRange";
 import { FormattedSearchParams } from "@/lib/formatSearchParams";
 import { getMinAndMaxTimeMinutes } from "@/lib/getMinAndMaxTimeMinutes";
 import { Restaurant } from "@/types/Restaurant";
+import { OpenStatusResponse } from "@/types/OpenStatusResponse";
 
 export default async function Restaurants({
   filters,
@@ -29,6 +30,30 @@ export default async function Restaurants({
       })
     );
   }
+
+  // fetch open status of each restaurant
+  restaurants = await Promise.all(
+    restaurants.map(async (r) => {
+      const res = await makeAPIRequest<OpenStatusResponse>(`/open/${r.id}`);
+      if (!res) {
+        console.error("Fetching open status failed for:", r.id);
+        r.is_open = false;
+        return r;
+      }
+      if ("error" in res) {
+        console.error(
+          "Couldn't get restaurant open status for:",
+          r.id,
+          "Because:",
+          res.reason
+        );
+        r.is_open = false;
+        return r;
+      }
+      r.is_open = res.is_open;
+      return r;
+    })
+  );
 
   // filtering
   const isInCategory = (r: Restaurant) => {
