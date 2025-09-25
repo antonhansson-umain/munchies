@@ -5,17 +5,17 @@ import Image from "next/image";
 import { cn } from "@/lib/cn";
 import useFilterClick from "@/hooks/useFilterClick";
 import { UIFilter } from "@/types/UIFilter";
+import { useState } from "react";
 
 export default function FilterCard({ filter }: { filter: UIFilter }) {
-  const { handleClick, values } = useFilterClick(filter);
+  const { handleClick, isActive } = useFilterClick(filter);
 
   return (
     <button
       className={cn(
         "card w-40 min-w-40 h-20 py-4 px-3 relative flex overflow-hidden cursor-pointer transition-colors hover:!bg-background hover:!border-primary-green",
         {
-          "!bg-primary-green text-white hover:!bg-primary-green/80":
-            values.includes(filter.value),
+          "!bg-primary-green text-white hover:!bg-primary-green/80": isActive,
         }
       )}
       onClick={handleClick}

@@ -13,28 +13,15 @@ export default async function Restaurants({
 }: {
   filters: FormattedSearchParams;
 }) {
-  const res = await makeAPIRequest<RestaurantsResponse>("/restaurants");
+  const res = await makeAPIRequest<RestaurantsResponse>("/restaurants", 3600);
   if (!res) return <>No restaurants found</>;
   let restaurants = res.restaurants;
 
-  // only fetch price ranges if price range filter is engaged
-  if (filters.price !== undefined) {
-    restaurants = await Promise.all(
-      restaurants.map(async (r) => {
-        const pricing_range = await makeAPIRequest<PriceRange>(
-          `/price-range/${r.price_range_id}`
-        );
-        if (!pricing_range) r.pricing_range = undefined;
-        else r.pricing_range = pricing_range.range;
-        return r;
-      })
-    );
-  }
-
-  // fetch open status of each restaurant
+  // fetch extra information about the restaurants
   restaurants = await Promise.all(
     restaurants.map(async (r) => {
-      const res = await makeAPIRequest<OpenStatusResponse>(`/open/${r.id}`);
+      // fetch open statuses
+      const res = await makeAPIRequest<OpenStatusResponse>(`/open/${r.id}`, 60);
       if (!res) {
         console.error("Fetching open status failed for:", r.id);
         r.is_open = false;
@@ -51,6 +38,16 @@ export default async function Restaurants({
         return r;
       }
       r.is_open = res.is_open;
+
+      // only fetch price ranges if price range filter is engaged
+      if (filters.price !== undefined) {
+        const pricing_range = await makeAPIRequest<PriceRange>(
+          `/price-range/${r.price_range_id}`,
+          3600
+        );
+        if (!pricing_range) r.pricing_range = undefined;
+        else r.pricing_range = pricing_range.range;
+      }
       return r;
     })
   );

@@ -11,7 +11,7 @@ export default async function Home({
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const filters = formatSearchParams(await searchParams);
-  const categories = await makeAPIRequest<FiltersResponse>("/filter");
+  const categories = await makeAPIRequest<FiltersResponse>("/filter", 3600);
   return (
     <>
       <Filters categories={categories?.filters} />

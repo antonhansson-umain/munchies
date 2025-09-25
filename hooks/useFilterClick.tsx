@@ -2,8 +2,11 @@
 
 import { UIFilter } from "@/types/UIFilter";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function useFilterClick(filter: UIFilter) {
+  const [isActive, setIsActive] = useState(false);
+  const [isClickable, setIsClickable] = useState(true);
   const { value } = filter;
 
   const router = useRouter();
@@ -16,7 +19,19 @@ export default function useFilterClick(filter: UIFilter) {
     values = groups.split(",");
   }
 
+  useEffect(() => {
+    if (values.includes(value)) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+    setIsClickable(true);
+  }, [searchParams]);
+
   const handleClick = () => {
+    if (!isClickable) return;
+    setIsClickable(false);
+    setIsActive(isActive ? false : true);
     let newValues: string[];
     if (values.includes(value)) {
       newValues = values.filter((c) => c !== value);
@@ -33,5 +48,5 @@ export default function useFilterClick(filter: UIFilter) {
     }
     router.push(`/?${params.toString()}`);
   };
-  return { handleClick, values };
+  return { handleClick, isActive };
 }
