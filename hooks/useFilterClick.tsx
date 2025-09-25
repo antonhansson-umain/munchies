@@ -1,7 +1,5 @@
 "use client";
 
-import { splitParamsIntoValues } from "@/lib/splitParamsIntoValues";
-import { FilterGroupkey } from "@/types/FilterGroup";
 import { UIFilter } from "@/types/UIFilter";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -12,10 +10,11 @@ export default function useFilterClick(filter: UIFilter) {
   const searchParams = useSearchParams();
 
   const params = new URLSearchParams(searchParams);
-  const values = splitParamsIntoValues(
-    params,
-    filter.groupKey as FilterGroupkey
-  );
+  const groups = searchParams.get(filter.groupKey);
+  let values: string[] = [];
+  if (groups) {
+    values = groups.split(",");
+  }
 
   const handleClick = () => {
     let newValues: string[];
