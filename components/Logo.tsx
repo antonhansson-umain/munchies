@@ -1,4 +1,3 @@
-import { cn } from "@/lib/cn";
 import Image from "next/image";
 
 type LogoProps = React.HTMLAttributes<HTMLImageElement>;

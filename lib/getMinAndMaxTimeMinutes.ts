@@ -1,6 +1,6 @@
 export function getMinAndMaxTimeMinutes(values: string[]) {
-  let minTime;
-  let maxTime;
+  let minTime = undefined;
+  let maxTime = undefined;
   const splitVals = [
     ...new Set(
       values

@@ -11,7 +11,7 @@ export default function FilterGroup({
     <div className="flex flex-col gap-4">
       <FilterGroupTitle>{filterGroup.label}</FilterGroupTitle>
       <div className="flex gap-2.5 flex-wrap">
-        {filterGroup.filters.map((o, index) => (
+        {filterGroup.filters.map((o) => (
           <FilterChip
             key={o.value}
             filter={o}
