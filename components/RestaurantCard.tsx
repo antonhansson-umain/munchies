@@ -14,6 +14,7 @@ export default function RestaurantCard({ restaurant }: ResturantCardProps) {
     <Link
       href={`/restaurant/${restaurant.id}`}
       className="card p-4 h-50 flex flex-col justify-between relative overflow-hidden hover:!bg-background transition-colors"
+      aria-label={restaurant.name}
     >
       <div className="flex justify-between">
         <div className="flex gap-2 z-10">
