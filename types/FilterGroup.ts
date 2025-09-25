@@ -7,6 +7,9 @@ export type FilterGroup = {
 };
 
 export const FilterGroupKeys = ["category", "time", "price"] as const;
-export const FilterGroupJank = ["category", "time", "price"];
 
 export type FilterGroupkey = (typeof FilterGroupKeys)[number];
+
+export function isFilterGroupKey(k: string): k is FilterGroupkey {
+  return (FilterGroupKeys as readonly string[]).includes(k);
+}
