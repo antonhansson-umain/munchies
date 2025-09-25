@@ -23,7 +23,7 @@ export default function RestaurantCard({
         <Chip className="gap-1">
           {restaurant.is_open ? (
             <>
-              <span className="w-2 h-2 rounded-full bg-primary-green"></span>
+              <span className="w-2 h-2 rounded-full bg-primary-green-400"></span>
               <span>Open</span>
             </>
           ) : (
@@ -61,7 +61,7 @@ export default function RestaurantCard({
           {restaurant.name}
         </H2>
         <span
-          className={`bg-primary-green rounded-full place-self-end w-8 h-8 text-white justify-center items-center flex hover:bg-primary-green/80 group-hover:bg-primary-green/80 transition-colors ${
+          className={`bg-primary-green-400 rounded-full place-self-end w-8 h-8 text-white justify-center items-center flex group-hover:bg-primary-green-500 transition-colors ${
             restaurant.is_open ? "" : "opacity-20"
           }`}
         >
