@@ -74,12 +74,18 @@ export default function Filters({
     },
   ];
   return (
-    <aside className="card !rounded-[10px] p-6 relative">
+    <aside className="card max-sm:!bg-transparent max-sm:!border-none !rounded-[10px] sm:p-6 relative max-sm:px-6 max-sm:!shadow-none">
       <div className="flex flex-col gap-8 sticky top-4">
-        <H2>Filter</H2>
+        <H2 className="hidden sm:block">Filter</H2>
         {groups.map(
           (g) =>
-            g.filters.length > 0 && <FilterGroup key={g.key} filterGroup={g} />
+            g.filters.length > 0 && (
+              <FilterGroup
+                key={g.key}
+                filterGroup={g}
+                className={g.key !== "time" ? "max-sm:hidden" : ""}
+              />
+            )
         )}
       </div>
     </aside>

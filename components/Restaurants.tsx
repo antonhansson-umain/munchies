@@ -91,8 +91,8 @@ export default async function Restaurants({
   });
 
   return (
-    <div className="flex flex-col gap-8 pr-10">
-      <H1>Restaurants</H1>
+    <div className="flex flex-col gap-5 sm:gap-8 sm:pr-10 max-sm:px-6">
+      <H1 className="max-sm:text-[20px]">Restaurants</H1>
       <div className="grid grid-cols-[repeat(auto-fill,minmax(327px,1fr))] gap-4">
         {restaurants.map((r) => (
           <RestaurantCard key={r.id} restaurant={r} />

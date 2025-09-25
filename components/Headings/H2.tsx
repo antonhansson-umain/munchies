@@ -1,5 +1,6 @@
+import { cn } from "@/lib/cn";
 import { HeadingProps } from "./HeadingProps";
 
-export default function H2({ children }: HeadingProps) {
-  return <h2 className="text-2xl">{children}</h2>;
+export default function H2({ children, className }: HeadingProps) {
+  return <h2 className={cn("text-2xl", className)}>{children}</h2>;
 }
