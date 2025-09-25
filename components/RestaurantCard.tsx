@@ -12,7 +12,7 @@ export default function RestaurantCard({ restaurant }: ResturantCardProps) {
   return (
     <Link
       href={`/restaurant/${restaurant.id}`}
-      className="card p-4 h-50 flex flex-col justify-between relative overflow-hidden hover:!bg-background transition-colors"
+      className="card p-4 h-50 flex flex-col justify-between relative overflow-hidden hover:!bg-background transition-colors group"
       aria-label={restaurant.name}
     >
       <div className="flex gap-2 z-10">
@@ -49,7 +49,7 @@ export default function RestaurantCard({ restaurant }: ResturantCardProps) {
         />
         <div className="flex justify-between items-center">
           <H2>{restaurant.name}</H2>
-          <span className="bg-primary-green rounded-full place-self-end w-8 h-8 text-white justify-center items-center flex">
+          <span className="bg-primary-green rounded-full place-self-end w-8 h-8 text-white justify-center items-center flex hover:bg-primary-green/80 group-hover:bg-primary-green/80 transition-colors">
             <RightArrowIcon />
           </span>
         </div>
