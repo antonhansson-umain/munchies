@@ -3,5 +3,5 @@ export default function FilterGroupTitle({
 }: {
   children: React.ReactNode;
 }) {
-  return <h3 className="font-semibold uppercase text-black/40">{children}</h3>;
+  return <h3 className="font-semibold uppercase text-black/60">{children}</h3>;
 }

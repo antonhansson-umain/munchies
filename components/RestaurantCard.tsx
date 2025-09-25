@@ -7,8 +7,12 @@ import Link from "next/link";
 
 type ResturantCardProps = React.HTMLAttributes<HTMLDivElement> & {
   restaurant: Restaurant;
+  imagePriority?: boolean;
 };
-export default function RestaurantCard({ restaurant }: ResturantCardProps) {
+export default function RestaurantCard({
+  restaurant,
+  imagePriority,
+}: ResturantCardProps) {
   return (
     <Link
       href={`/restaurant/${restaurant.id}`}
@@ -38,23 +42,31 @@ export default function RestaurantCard({ restaurant }: ResturantCardProps) {
           Opens tomorrow at 12 pm
         </div>
       )}
-      <div className={restaurant.is_open ? "" : "opacity-20"}>
-        <Image
-          src={restaurant.image_url}
-          width={140}
-          height={140}
-          alt={
-            restaurant.image_url.split("/")[2].split(".")[0] ?? restaurant.name
-          }
-          className="absolute -right-7.5 -top-7.5"
-          draggable={false}
-        />
-        <div className="flex justify-between items-center">
-          <H2>{restaurant.name}</H2>
-          <span className="bg-primary-green rounded-full place-self-end w-8 h-8 text-white justify-center items-center flex hover:bg-primary-green/80 group-hover:bg-primary-green/80 transition-colors">
-            <RightArrowIcon />
-          </span>
-        </div>
+      <Image
+        src={restaurant.image_url}
+        {...(imagePriority ? { priority: true } : {})}
+        {...(imagePriority ? { fetchPriority: "high" } : {})}
+        width={140}
+        height={140}
+        alt={
+          restaurant.image_url.split("/")[2].split(".")[0] ?? restaurant.name
+        }
+        className={`absolute -right-7.5 -top-7.5 ${
+          restaurant.is_open ? "" : "opacity-20"
+        }`}
+        draggable={false}
+      />
+      <div className="flex justify-between items-center">
+        <H2 className={restaurant.is_open ? "" : "opacity-50"}>
+          {restaurant.name}
+        </H2>
+        <span
+          className={`bg-primary-green rounded-full place-self-end w-8 h-8 text-white justify-center items-center flex hover:bg-primary-green/80 group-hover:bg-primary-green/80 transition-colors ${
+            restaurant.is_open ? "" : "opacity-20"
+          }`}
+        >
+          <RightArrowIcon />
+        </span>
       </div>
     </Link>
   );
