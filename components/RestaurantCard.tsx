@@ -56,7 +56,7 @@ export default function RestaurantCard({
         }`}
         draggable={false}
       />
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center gap-4">
         <H2 className={restaurant.is_open ? "" : "opacity-50"}>
           {restaurant.name}
         </H2>
