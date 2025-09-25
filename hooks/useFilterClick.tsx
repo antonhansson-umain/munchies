@@ -46,7 +46,7 @@ export default function useFilterClick(filter: UIFilter) {
     } else {
       params.set(filter.groupKey, newValues[0]);
     }
-    router.push(`/?${params.toString()}`);
+    router.push(`/?${params.toString()}`, { scroll: false });
   };
   return { handleClick, isActive };
 }
