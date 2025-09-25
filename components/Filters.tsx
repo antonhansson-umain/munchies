@@ -74,7 +74,7 @@ export default function Filters({
     },
   ];
   return (
-    <aside className="card max-sm:!bg-transparent max-sm:!border-none !rounded-[10px] sm:p-6 relative max-sm:px-6 max-sm:!shadow-none">
+    <aside className="card max-sm:!bg-transparent max-sm:!border-none !rounded-[10px] sm:p-6 relative max-sm:px-6 max-sm:!shadow-none z-10">
       <div className="flex flex-col gap-8 sticky top-4">
         <H2 className="hidden sm:block">Filter</H2>
         {groups.map(

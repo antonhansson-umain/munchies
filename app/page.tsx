@@ -15,7 +15,7 @@ export default async function Home({
   return (
     <>
       <Filters categories={categories?.filters} />
-      <main className="flex flex-col sm:gap-10 gap-6">
+      <main className="flex flex-col">
         {categories?.filters && <FilterCards categories={categories.filters} />}
         <Restaurants filters={filters} />
       </main>

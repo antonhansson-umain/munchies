@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${SFPro.className} antialiased max-w-[1440px] sm:grid sm:grid-rows-[auto_1fr] sm:grid-cols-[239px_1fr] min-h-screen gap-x-5 mx-auto sm:pl-10 pb-8 max-sm:gap-6 max-sm:flex max-sm:flex-col`}
+        className={`${SFPro.className} antialiased max-w-[1440px] sm:grid sm:grid-rows-[auto_1fr] sm:grid-cols-[239px_1fr] min-h-screen  mx-auto sm:pl-10 pb-8 max-sm:gap-6 max-sm:flex max-sm:flex-col`}
       >
         <header className="sm:col-span-2 sm:h-36 flex items-center pt-12 sm:pt-1 max-sm:px-6">
           <Link href={"/"} aria-label="Munchies">
@@ -44,3 +44,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+// sm:gap-x-5
