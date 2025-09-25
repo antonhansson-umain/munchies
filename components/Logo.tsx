@@ -1,6 +1,5 @@
 import Image, { ImageProps } from "next/image";
 
-// type LogoProps = React.HTMLAttributes<HTMLImageElement>;
 type LogoProps = Omit<ImageProps, "src" | "alt">;
 
 export default function Logo({ className, ...props }: LogoProps) {
