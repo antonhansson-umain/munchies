@@ -15,7 +15,6 @@ export default async function Restaurants({
   const res = await makeAPIRequest<RestaurantsResponse>("/restaurants");
   if (!res) return <>No restaurants found</>;
   let restaurants = res.restaurants;
-  console.log(res);
 
   // only fetch price ranges if price range filter is engaged
   if (filters.price !== undefined) {
