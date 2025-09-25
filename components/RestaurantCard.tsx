@@ -50,9 +50,9 @@ export default function RestaurantCard({ restaurant }: ResturantCardProps) {
         />
         <div className="flex justify-between items-center">
           <H2>{restaurant.name}</H2>
-          <Button className="rounded-full place-self-end">
+          <span className="bg-primary-green rounded-full place-self-end w-8 h-8 text-white justify-center items-center flex">
             <RightArrowIcon />
-          </Button>
+          </span>
         </div>
       </div>
     </Link>
