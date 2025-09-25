@@ -1,8 +1,9 @@
-import Image from "next/image";
+import Image, { ImageProps } from "next/image";
 
-type LogoProps = React.HTMLAttributes<HTMLImageElement>;
+// type LogoProps = React.HTMLAttributes<HTMLImageElement>;
+type LogoProps = Omit<ImageProps, "src" | "alt">;
 
-export default function Logo({ className }: LogoProps) {
+export default function Logo({ className, ...props }: LogoProps) {
   return (
     <Image
       src={"/logo.svg"}
@@ -11,6 +12,7 @@ export default function Logo({ className }: LogoProps) {
       height={40}
       className={className}
       draggable={false}
+      {...props}
     />
   );
 }

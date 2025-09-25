@@ -36,7 +36,7 @@ export default function RootLayout({
       >
         <header className="sm:col-span-2 sm:h-36 flex items-center pt-12 sm:pt-1 max-sm:px-6">
           <Link href={"/"} aria-label="Munchies">
-            <Logo className="max-sm:w-42" />
+            <Logo className="max-sm:w-42" priority={true} />
           </Link>
         </header>
         {children}
@@ -44,5 +44,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-// sm:gap-x-5
