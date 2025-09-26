@@ -56,12 +56,14 @@ export async function getRestaurants(filters: FormattedSearchParams) {
     return false;
   };
   const isWithinTime = (r: Restaurant) => {
-    const { minTime, maxTime } = getMinAndMaxTimeMinutes(filters.time);
-    if (
-      r.delivery_time_minutes >= minTime &&
-      r.delivery_time_minutes <= maxTime
-    ) {
-      return true;
+    const timeRanges = filters.time.map((t) => getMinAndMaxTimeMinutes(t));
+    for (const t of timeRanges) {
+      if (
+        r.delivery_time_minutes >= t.minTime &&
+        r.delivery_time_minutes <= t.maxTime
+      ) {
+        return true;
+      }
     }
     return false;
   };
