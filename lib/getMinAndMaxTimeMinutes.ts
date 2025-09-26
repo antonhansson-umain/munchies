@@ -1,16 +1,4 @@
-export function getMinAndMaxTimeMinutes(values: string[]) {
-  let minTime = undefined;
-  let maxTime = undefined;
-  const splitVals = [
-    ...new Set(
-      values
-        .map((v) => v.split("-"))
-        .flat()
-        .map((v) => Number(v))
-    ),
-  ];
-  const sortedVals = splitVals.sort();
-  minTime = sortedVals[0];
-  maxTime = sortedVals.at(-1) ?? Infinity;
-  return { minTime, maxTime };
+export function getMinAndMaxTimeMinutes(value: string) {
+  const values = value.split("-");
+  return { minTime: Number(values[0]), maxTime: Number(values[1]) };
 }
