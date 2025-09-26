@@ -1,6 +1,6 @@
 import { FiltersResponse } from "@/types/FilterResponse";
-import FilterGroup from "./FilterGroup";
-import H2 from "./Headings/H2";
+import FilterGroup from "../FilterGroup";
+import H2 from "../Headings/H2";
 import { FilterGroup as FilterGroupType } from "@/types/FilterGroup";
 
 export default function Filters({

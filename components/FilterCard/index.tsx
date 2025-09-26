@@ -1,6 +1,6 @@
 "use client";
 
-import H3 from "./Headings/H3";
+import H3 from "../Headings/H3";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
 import useFilterClick from "@/hooks/useFilterClick";
