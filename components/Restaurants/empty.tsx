@@ -11,6 +11,7 @@ export default function Empty() {
         alt={"Person looking for something through magnifying glass."}
         width={160}
         height={160}
+        priority={true}
       />
       <Link
         href={"/"}
