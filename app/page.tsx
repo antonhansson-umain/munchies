@@ -21,7 +21,7 @@ export default async function Home({
       <main className="flex flex-col">
         {categories?.filters && <FilterCards categories={categories.filters} />}
         <Suspense
-          // key={Object.entries(filters).flat().join("") || "/"}
+          key={Object.entries(filters).flat().join("") || "/"} // force re-render on new "search"
           fallback={<RestaurantsSkeleton />}
         >
           <Restaurants filters={filters} />
