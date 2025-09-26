@@ -10,7 +10,7 @@ export default function FilterChipSkeleton({
   return (
     <button
       className={
-        "card px-3 py-2 border-[0.6px] border-black/10 rounded-lg flex gap-2 w-max h-8"
+        "card px-3 py-2 border-[0.6px] border-black/10 rounded-lg flex gap-2 w-max min-h-8 items-center"
       }
       {...props}
     >

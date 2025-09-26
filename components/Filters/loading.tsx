@@ -8,7 +8,7 @@ export default function FiltersSkeleton() {
     <aside className="card max-sm:!bg-transparent max-sm:!border-none !rounded-[10px] sm:p-6 relative max-sm:px-6 max-sm:!shadow-none z-10">
       <div className="flex flex-col gap-8 sticky top-4">
         <H2 className="hidden sm:block">Filter</H2>
-        <FilterGroupSkeleton>
+        <FilterGroupSkeleton className="max-sm:hidden">
           {Array.from({ length: 7 }).map((_, index) => (
             <FilterChipSkeleton
               key={index}
@@ -24,7 +24,7 @@ export default function FiltersSkeleton() {
             />
           ))}
         </FilterGroupSkeleton>
-        <FilterGroupSkeleton>
+        <FilterGroupSkeleton className="max-sm:hidden">
           {Array.from({ length: 4 }).map((_, index) => (
             <FilterChipSkeleton
               key={index}

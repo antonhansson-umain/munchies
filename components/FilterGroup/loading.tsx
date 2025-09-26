@@ -11,7 +11,7 @@ export default function FilterGroupSkeleton({
 }) {
   return (
     <div className={cn("flex flex-col gap-4", className)}>
-      <Skeleton className="w-24 h-3" />
+      <Skeleton className="w-24 h-3 my-0.5" />
       <div className="flex gap-2.5 flex-wrap">{children}</div>
     </div>
   );
