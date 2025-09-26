@@ -1,6 +1,5 @@
 import { cn } from "@/lib/cn";
 import Skeleton from "../Skeleton";
-import FilterChipSkeleton from "../FilterChip/loading";
 
 export default function FilterGroupSkeleton({
   className,

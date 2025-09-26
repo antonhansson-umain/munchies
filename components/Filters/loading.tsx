@@ -1,4 +1,3 @@
-import FilterGroup from "../FilterGroup";
 import H2 from "../Headings/H2";
 import FilterGroupSkeleton from "../FilterGroup/loading";
 import FilterChipSkeleton from "../FilterChip/loading";
