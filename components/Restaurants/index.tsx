@@ -1,8 +1,6 @@
 import H1 from "../Headings/H1";
 import RestaurantCard from "../RestaurantCard";
-import { FormattedSearchParams } from "@/lib/formatSearchParams";
 import Empty from "./empty";
-import { getRestaurants } from "@/actions/getRestaurants";
 import { Restaurant } from "@/types/Restaurant";
 
 export default async function Restaurants({
