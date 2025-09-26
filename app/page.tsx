@@ -1,4 +1,3 @@
-import { getRestaurants } from "@/actions/getRestaurants";
 import FilterCards from "@/components/FilterCards";
 import Filters from "@/components/Filters";
 import Restaurants from "@/components/Restaurants";
@@ -15,7 +14,6 @@ export default async function Home({
 }) {
   const params = await searchParams;
   const filters = formatSearchParams(params);
-  const restaurants = await getRestaurants(filters);
   const categories = await makeAPIRequest<FiltersResponse>("/filter", 3600);
   return (
     <>
@@ -23,10 +21,10 @@ export default async function Home({
       <main className="flex flex-col">
         {categories?.filters && <FilterCards categories={categories.filters} />}
         <Suspense
-          key={Object.values(filters).join("")}
+          key={Object.entries(filters).flat().join("") || "/"}
           fallback={<RestaurantsSkeleton />}
         >
-          <Restaurants restaurants={restaurants} />
+          <Restaurants filters={filters} />
         </Suspense>
       </main>
     </>
