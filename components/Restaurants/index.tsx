@@ -7,6 +7,7 @@ import { FormattedSearchParams } from "@/lib/formatSearchParams";
 import { getMinAndMaxTimeMinutes } from "@/lib/getMinAndMaxTimeMinutes";
 import { Restaurant } from "@/types/Restaurant";
 import { OpenStatusResponse } from "@/types/OpenStatusResponse";
+import Empty from "./empty";
 
 export default async function Restaurants({
   filters,
@@ -14,7 +15,7 @@ export default async function Restaurants({
   filters: FormattedSearchParams;
 }) {
   const res = await makeAPIRequest<RestaurantsResponse>("/restaurants", 3600);
-  if (!res) return <>No restaurants found</>;
+  if (!res) return <Empty />;
   let restaurants = res.restaurants;
 
   // fetch extra information about the restaurants
@@ -98,7 +99,7 @@ export default async function Restaurants({
             imagePriority={[0, 1, 2, 3].includes(index) ? true : undefined}
           />
         ))}
-        {restaurants.length === 0 && <>No restaurants found</>}
+        {restaurants.length === 0 && <Empty />}
       </div>
     </div>
   );
