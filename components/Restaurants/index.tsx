@@ -1,13 +1,15 @@
+import { FormattedSearchParams } from "@/lib/formatSearchParams";
 import H1 from "../Headings/H1";
 import RestaurantCard from "../RestaurantCard";
 import Empty from "./empty";
-import { Restaurant } from "@/types/Restaurant";
+import { getRestaurants } from "@/actions/getRestaurants";
 
 export default async function Restaurants({
-  restaurants,
+  filters,
 }: {
-  restaurants: Restaurant[];
+  filters: FormattedSearchParams;
 }) {
+  const restaurants = await getRestaurants(filters);
   return (
     <div className="flex flex-col gap-5 sm:gap-8 sm:pr-10 max-sm:px-6 sm:pl-5">
       <H1 className="max-sm:text-[20px]">Restaurants</H1>
