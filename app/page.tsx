@@ -15,13 +15,14 @@ export default async function Home({
   const params = await searchParams;
   const filters = formatSearchParams(params);
   const categories = await makeAPIRequest<FiltersResponse>("/filter", 3600);
+  const key = Object.entries(filters).flat().join("");
   return (
     <>
-      <Filters categories={categories?.filters} />
+      <Filters categories={categories?.filters} isActive={key !== ""} />
       <main className="flex flex-col">
         {categories?.filters && <FilterCards categories={categories.filters} />}
         <Suspense
-          key={Object.entries(filters).flat().join("") || "/"} // force re-render on new "search"
+          key={key || "/"} // force re-render on new "search"
           fallback={<RestaurantsSkeleton />}
         >
           <Restaurants filters={filters} />

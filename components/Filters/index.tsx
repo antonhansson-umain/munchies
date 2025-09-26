@@ -2,11 +2,14 @@ import { FiltersResponse } from "@/types/FilterResponse";
 import FilterGroup from "../FilterGroup";
 import H2 from "../Headings/H2";
 import { FilterGroup as FilterGroupType } from "@/types/FilterGroup";
+import ResetFiltersButton from "../ResetFiltersButton";
 
 export default function Filters({
   categories,
+  isActive,
 }: {
   categories?: FiltersResponse["filters"];
+  isActive: boolean;
 }) {
   const groups: FilterGroupType[] = [
     {
@@ -76,7 +79,10 @@ export default function Filters({
   return (
     <aside className="card max-sm:!bg-transparent max-sm:!border-none !rounded-[10px] sm:p-6 relative max-sm:px-6 max-sm:!shadow-none z-10">
       <div className="flex flex-col gap-8 sticky top-4">
-        <H2 className="hidden sm:block">Filter</H2>
+        <div className="flex items-center justify-between min-h-8">
+          <H2 className="hidden sm:block">Filter</H2>
+          <ResetFiltersButton className={`${isActive ? "block" : "hidden"}`} />
+        </div>
         {groups.map(
           (g) =>
             g.filters.length > 0 && (

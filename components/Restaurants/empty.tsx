@@ -1,6 +1,6 @@
 import Image from "next/image";
 import H3 from "../Headings/H3";
-import Link from "next/link";
+import ResetFiltersButton from "../ResetFiltersButton";
 
 export default function Empty() {
   return (
@@ -13,12 +13,7 @@ export default function Empty() {
         height={160}
         priority={true}
       />
-      <Link
-        href={"/"}
-        className="bg-primary-green-400 px-3 py-2 rounded-lg text-white hover:bg-primary-green-500 transition-colors"
-      >
-        Reset Filters
-      </Link>
+      <ResetFiltersButton />
     </div>
   );
 }
