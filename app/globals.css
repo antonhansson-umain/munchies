@@ -3,6 +3,7 @@
 :root {
   /* COLORS */
   --off-white: #fafafa;
+  --primary-green-300: oklch(0.6026 0.122475 153.2349);
 }
 
 @theme inline {
@@ -49,4 +50,8 @@ button {
 button:disabled {
   cursor: initial;
   pointer-events: none;
+}
+
+*:focus {
+  outline-color: var(--primary-green-300);
 }

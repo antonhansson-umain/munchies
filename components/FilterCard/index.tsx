@@ -12,9 +12,9 @@ export default function FilterCard({ filter }: { filter: UIFilter }) {
   return (
     <button
       className={cn(
-        "card w-40 min-w-40 h-20 py-4 px-3 relative flex overflow-hidden cursor-pointer transition-colors hover:!bg-background hover:!border-primary-green-400",
+        "card w-40 min-w-40 h-20 py-4 px-3 relative flex overflow-hidden cursor-pointer transition-colors hover:!bg-background focus:!bg-background hover:!border-primary-green-400",
         {
-          "!bg-primary-green-400 text-white hover:!bg-primary-green-500":
+          "!bg-primary-green-400 text-white hover:!bg-primary-green-500 focus:!bg-primary-green-500":
             isActive,
         }
       )}
