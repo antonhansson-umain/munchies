@@ -3,10 +3,10 @@
 import { FormattedSearchParams } from "@/lib/formatSearchParams";
 import { getMinAndMaxTimeMinutes } from "@/lib/getMinAndMaxTimeMinutes";
 import { makeAPIRequest } from "@/lib/makeAPIRequest";
-import { OpenStatusResponse } from "@/types/OpenStatusResponse";
-import { PriceRange } from "@/types/PriceRange";
 import { Restaurant } from "@/types/Restaurant";
 import { RestaurantsResponse } from "@/types/RestaurantsResponse";
+import { getPriceRange } from "./getPriceRange";
+import { getOpenStatus } from "./getOpenStatus";
 
 export async function getRestaurants(filters: FormattedSearchParams) {
   const res = await makeAPIRequest<RestaurantsResponse>("/restaurants", 3600);
@@ -18,29 +18,11 @@ export async function getRestaurants(filters: FormattedSearchParams) {
   restaurants = await Promise.all(
     restaurants.map(async (r) => {
       // fetch open statuses
-      const res = await makeAPIRequest<OpenStatusResponse>(`/open/${r.id}`, 60);
-      if (!res) {
-        console.error("Fetching open status failed for:", r.id);
-        r.is_open = false;
-        return r;
-      }
-      if ("error" in res) {
-        console.error(
-          "Couldn't get restaurant open status for:",
-          r.id,
-          "Because:",
-          res.reason
-        );
-        r.is_open = false;
-        return r;
-      }
-      r.is_open = res.is_open;
+      const openStatus = await getOpenStatus(r.id);
+      r.is_open = openStatus?.is_open ?? false;
 
       // fetch price ranges
-      const pricing_range = await makeAPIRequest<PriceRange>(
-        `/price-range/${r.price_range_id}`,
-        3600
-      );
+      const pricing_range = await getPriceRange(r.price_range_id);
       if (!pricing_range) r.pricing_range = undefined;
       else r.pricing_range = pricing_range.range;
 
