@@ -21,7 +21,7 @@ export default async function Home({
       <main className="flex flex-col">
         {categories?.filters && <FilterCards categories={categories.filters} />}
         <Suspense
-          key={Object.entries(filters).flat().join("") || "/"}
+          // key={Object.entries(filters).flat().join("") || "/"}
           fallback={<RestaurantsSkeleton />}
         >
           <Restaurants filters={filters} />
