@@ -1,5 +1,5 @@
 import { FilterGroup as FilterGroupType } from "@/types/FilterGroup";
-import FilterChip from "./FilterChip";
+import FilterChip from "../FilterChip";
 import { cn } from "@/lib/cn";
 
 export default function FilterGroup({

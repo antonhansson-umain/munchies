@@ -1,5 +1,5 @@
-import H1 from "./Headings/H1";
-import RestaurantCard from "./RestaurantCard";
+import H1 from "../Headings/H1";
+import RestaurantCard from "../RestaurantCard";
 import { RestaurantsResponse } from "@/types/RestaurantsResponse";
 import { makeAPIRequest } from "@/lib/makeAPIRequest";
 import { PriceRange } from "@/types/PriceRange";
