@@ -79,7 +79,7 @@ export default function Filters({
   return (
     <aside className="card max-sm:!bg-transparent max-sm:!border-none !rounded-[10px] sm:p-6 relative max-sm:px-6 max-sm:!shadow-none z-10">
       <div className="flex flex-col gap-8 sticky top-4">
-        <div className="flex items-center justify-between min-h-8">
+        <div className="items-center justify-between min-h-8 hidden sm:flex">
           <H2 className="hidden sm:block">Filter</H2>
           <ResetFiltersButton className={`${isActive ? "block" : "hidden"}`} />
         </div>
