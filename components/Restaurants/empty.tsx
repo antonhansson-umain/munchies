@@ -4,7 +4,7 @@ import ResetFiltersButton from "../ResetFiltersButton";
 
 export default function Empty() {
   return (
-    <div className="w-full col-span-2 justify-center flex flex-col items-center gap-4">
+    <div className="w-full col-span-full justify-center flex flex-col items-center gap-4">
       <H3 className="text-2xl">No restaurants found</H3>
       <Image
         src={"/empty.png"}
