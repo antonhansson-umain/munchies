@@ -7,7 +7,7 @@ import { getRestaurants } from "@/actions/getRestaurants";
 export default async function Restaurants({
   filters,
 }: {
-  filters: FormattedSearchParams;
+  filters?: FormattedSearchParams;
 }) {
   const restaurants = await getRestaurants(filters);
   return (

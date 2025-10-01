@@ -6,10 +6,10 @@ import ResetFiltersButton from "../ResetFiltersButton";
 
 export default function Filters({
   categories,
-  isActive,
+  isActive = false,
 }: {
   categories?: FiltersResponse["filters"];
-  isActive: boolean;
+  isActive?: boolean;
 }) {
   const groups: FilterGroupType[] = [
     {

@@ -1,5 +1,7 @@
 import { FiltersResponse } from "@/types/FilterResponse";
 import FilterCard from "../FilterCard";
+import { Suspense } from "react";
+import FilterCardSkeleton from "../FilterCard/loading";
 
 export default async function FilterCards({
   categories,
@@ -13,15 +15,16 @@ export default async function FilterCards({
       }`}
     >
       {categories.map((f) => (
-        <FilterCard
-          key={f.id}
-          filter={{
-            label: f.name,
-            value: f.id,
-            groupKey: "category",
-            image: f.image_url,
-          }}
-        />
+        <Suspense fallback={<FilterCardSkeleton />} key={f.id}>
+          <FilterCard
+            filter={{
+              label: f.name,
+              value: f.id,
+              groupKey: "category",
+              image: f.image_url,
+            }}
+          />
+        </Suspense>
       ))}
     </div>
   );

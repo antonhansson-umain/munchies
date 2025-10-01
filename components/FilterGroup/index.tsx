@@ -1,6 +1,8 @@
 import { FilterGroup as FilterGroupType } from "@/types/FilterGroup";
 import FilterChip from "../FilterChip";
 import { cn } from "@/lib/cn";
+import FilterChipSkeleton from "../FilterChip/loading";
+import { Suspense } from "react";
 
 export default function FilterGroup({
   filterGroup,
@@ -16,11 +18,12 @@ export default function FilterGroup({
       </h3>
       <div className="flex gap-2.5 flex-wrap">
         {filterGroup.filters.map((o) => (
-          <FilterChip
-            key={o.value}
-            filter={o}
-            className={o.label.includes("$") ? "px-2" : ""}
-          />
+          <Suspense fallback={<FilterChipSkeleton />} key={o.value}>
+            <FilterChip
+              filter={o}
+              className={o.label.includes("$") ? "px-2" : ""}
+            />
+          </Suspense>
         ))}
       </div>
     </div>

@@ -8,7 +8,7 @@ import { RestaurantsResponse } from "@/types/RestaurantsResponse";
 import { getPriceRange } from "./getPriceRange";
 import { getOpenStatus } from "./getOpenStatus";
 
-export async function getRestaurants(filters: FormattedSearchParams) {
+export async function getRestaurants(filters?: FormattedSearchParams) {
   const res = await makeAPIRequest<RestaurantsResponse>("/restaurants", 3600);
   if (!res || !res.restaurants) return [];
 
@@ -29,6 +29,8 @@ export async function getRestaurants(filters: FormattedSearchParams) {
       return r;
     })
   );
+
+  if (!filters) return restaurants;
 
   // filtering
   const isInCategory = (r: Restaurant) => {
